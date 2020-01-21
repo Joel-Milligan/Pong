@@ -12,6 +12,8 @@ main_display = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 
 # Functions
+def held_keys(keys):
+    pass
 def update_screen():
     main_display.fill(colours.black)
     pygame.display.flip()
@@ -21,6 +23,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    held_keys(pygame.key.get_pressed())
 
     update_screen()
     clock.tick(60)
