@@ -12,6 +12,7 @@ main_display = pygame.display.set_mode(screen_size)
 # Functions
 def update_screen():
     main_display.fill(colours.black)
+    pygame.display.flip()
 
 # Main Game Loop
 while running:
