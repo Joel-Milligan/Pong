@@ -18,6 +18,7 @@ def held_keys(keys):
     pass
 def update_screen():
     main_display.fill(colours.black)
+    player1.draw()
     pygame.display.flip()
 
 # Main Game Loop
