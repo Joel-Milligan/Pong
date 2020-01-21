@@ -20,6 +20,10 @@ class Ball:
     def calculate_velocity(self):
         self.velocity = [i * self.speed for i in self.unit_vector]
 
+    def reflect(self):
+        self.unit_vector[1] = -1 * self.unit_vector[1]
+        calculate_velocity()
+
     def update_position(self):
         self.x += self.velocity[0]
         self.y += self.velocity[1]
