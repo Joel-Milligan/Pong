@@ -22,3 +22,6 @@ class Paddle:
         if(self.y > 0):
             self.y -= self.speed
 
+    def draw(self):
+        rect = (self.x, self.y, self.width, self.length)
+        pygame.draw.rect(self.screen, self.colour, rect)
