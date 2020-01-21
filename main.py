@@ -11,7 +11,9 @@ indent = 50
 pygame.init()
 main_display = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
-player1 = paddle.Paddle(main_display, screen_size[0] - (indent + paddle.Paddle.width), (screen_size[1] / 2) - (paddle.Paddle.length - 2))
+player1 = paddle.Paddle(main_display, \
+                        screen_size[0] - (indent + paddle.Paddle.width), \
+                        (screen_size[1] / 2) - (paddle.Paddle.length - 2))
 
 # Functions
 def held_keys(keys):
