@@ -4,6 +4,7 @@ import colours
 # Variables
 running = True
 screen_size = (800, 600)
+indent = 50
 
 # Initialisation
 pygame.init()
