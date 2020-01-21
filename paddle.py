@@ -18,3 +18,7 @@ class Paddle:
         if(self.y + self.length < self.screen.get_height()):
             self.y += self.speed
 
+    def move_up(self):
+        if(self.y > 0):
+            self.y -= self.speed
+
