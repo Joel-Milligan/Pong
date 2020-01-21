@@ -4,7 +4,7 @@ import colours
 class Paddle:
     # Constant Variables
     length = 100
-    width = 100
+    width = 20
     colour = colours.white
     speed = 5
     
