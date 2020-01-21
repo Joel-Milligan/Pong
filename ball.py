@@ -14,3 +14,6 @@ class Ball:
         self.unit_vector = [1/math.sqrt(2), 1/math.sqrt(2)]
         self.velocity = [i * self.speed for i in self.unit_vector]
 
+    def draw(self):
+        pygame.draw.circle(self.screen, self.colour, (int(self.x), int(self.y)), int(self.radius))
+
