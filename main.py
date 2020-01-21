@@ -15,7 +15,12 @@ player1 = paddle.Paddle(main_display, screen_size[0] - (indent + paddle.Paddle.w
 
 # Functions
 def held_keys(keys):
-    pass
+    if keys[pygame.K_w]:
+        player1.move_up()
+
+    if keys[pygame.K_s]:
+        player1.move_down()
+
 def update_screen():
     main_display.fill(colours.black)
     player1.draw()
@@ -26,7 +31,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+        
     held_keys(pygame.key.get_pressed())
 
     update_screen()
