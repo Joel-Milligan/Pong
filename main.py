@@ -24,6 +24,12 @@ player_left = paddle.Paddle(main_display, \
                         (indent + paddle.Paddle.width), \
                         (screen_size[1] / 2) - (paddle.Paddle.height - 2))
 
+# Text
+menu_font = pygame.font.SysFont(None, 72)
+
+start_game_text = menu_font.render("Start Game", True, colours.white, colours.black)
+quit_text = menu_font.render("Quit", True, colours.white, colours.black)
+
 # Functions
 def held_keys(keys):
     if keys[pygame.K_w]:
