@@ -6,11 +6,13 @@ import ball
 # Variables
 running = True
 screen_size = (800, 600)
+screen_title = "Pong"
 indent = 50
 
 # Initialisation
 pygame.init()
 main_display = pygame.display.set_mode(screen_size)
+pygame.display.set_caption(screen_title)
 clock = pygame.time.Clock()
 game_ball = ball.Ball(main_display, screen_size[0] / 2, screen_size[1] / 2)
 player1 = paddle.Paddle(main_display, \
