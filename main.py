@@ -25,18 +25,20 @@ player_left = paddle.Paddle(main_display, \
                         (screen_size[1] / 2) - (paddle.Paddle.height - 2))
 
 # Text
-menu_font = pygame.font.SysFont(None, 72)
+font = pygame.font.SysFont(None, 72)
 
-start_game_text = menu_font.render("Start Game", True, colours.white, colours.black)
+start_game_text = font.render("Start Game", True, colours.white, colours.black)
 start_text_x = (screen_size[0] / 2) - (start_game_text.get_width() / 2)
 start_text_y = (screen_size[1] / 3) - (start_game_text.get_height() / 2)
 start_button = pygame.Rect(start_text_x, start_text_y, start_game_text.get_width(), start_game_text.get_height())
 
-quit_text = menu_font.render("Quit", True, colours.white, colours.black)
+quit_text = font.render("Quit", True, colours.white, colours.black)
 quit_text_x = (screen_size[0] / 2) - (quit_text.get_width() / 2)
 quit_text_y = (2 * screen_size[1] / 3) - (quit_text.get_height() / 2)
 quit_button = pygame.Rect(quit_text_x, quit_text_y, quit_text.get_width(), quit_text.get_height())
-        
+
+
+
 # Functions
 def held_keys(keys):
     if keys[pygame.K_w]:
