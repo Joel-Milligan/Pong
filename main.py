@@ -43,6 +43,7 @@ def game_win(winner):
 
 def check_ball_collision():
     # Check if hit a paddle
+    # TODO Deal with when the ball hits top/bottom of paddle
     if(game_ball.rect.colliderect(player_right.rect) or game_ball.rect.colliderect(player_left.rect)):
         game_ball.reflect_x()
 
