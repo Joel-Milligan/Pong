@@ -28,8 +28,15 @@ player_left = paddle.Paddle(main_display, \
 menu_font = pygame.font.SysFont(None, 72)
 
 start_game_text = menu_font.render("Start Game", True, colours.white, colours.black)
-quit_text = menu_font.render("Quit", True, colours.white, colours.black)
+start_text_x = (screen_size[0] / 2) - (start_game_text.get_width() / 2)
+start_text_y = (screen_size[1] / 3) - (start_game_text.get_height() / 2)
+start_button = pygame.Rect(start_text_x, start_text_y, start_game_text.get_width(), start_game_text.get_height())
 
+quit_text = menu_font.render("Quit", True, colours.white, colours.black)
+quit_text_x = (screen_size[0] / 2) - (quit_text.get_width() / 2)
+quit_text_y = (2 * screen_size[1] / 3) - (quit_text.get_height() / 2)
+quit_button = pygame.Rect(quit_text_x, quit_text_y, quit_text.get_width(), quit_text.get_height())
+        
 # Functions
 def held_keys(keys):
     if keys[pygame.K_w]:
@@ -43,6 +50,16 @@ def held_keys(keys):
 
     if keys[pygame.K_DOWN]:
         player_left.move_down()
+
+def mouse_clicked(position):
+    global game_state
+
+    if(game_state == "menu"):
+        if(start_button.collidepoint(position)):
+            game_state = "playing"
+        elif(quit_button.collidepoint(position)):
+            pygame.quit()
+            quit()
 
 def game_win(winner):
     pygame.time.delay(1000)
@@ -74,14 +91,8 @@ def check_ball_collision():
 def update_screen():
     if(game_state == "menu"):
         main_display.fill(colours.black)
-        
-        start_text_x = (screen_size[0] / 2) - (start_game_text.get_width() / 2)
-        start_text_y = (screen_size[1] / 3) - (start_game_text.get_height() / 2)
-        main_display.blit(start_game_text, (start_text_x, start_text_y))
-        
-        quit_text_x = (screen_size[0] / 2) - (quit_text.get_width() / 2)
-        quit_text_y = (2 * screen_size[1] / 3) - (quit_text.get_height() / 2)
-        main_display.blit(quit_text, (quit_text_x, quit_text_y))
+        main_display.blit(start_game_text, start_button)
+        main_display.blit(quit_text, quit_button)
 
         pygame.display.flip()
     
@@ -102,7 +113,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_clicked(pygame.mouse.get_pos())
+
     held_keys(pygame.key.get_pressed())
 
     update_screen()
