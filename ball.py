@@ -1,6 +1,7 @@
 import pygame
 import colours
 import math
+import random
 
 class Ball:
     radius = 10
@@ -20,7 +21,7 @@ class Ball:
 
     def calculate_velocity(self):
         self.velocity = [self.speed * math.cos(self.angle), self.speed * math.sin(self.angle)]
-
+        
     def reflect_x(self):
         if(-math.pi / 2 < self.angle < math.pi / 2):
             self.angle = math.pi - random.uniform(-math.pi / 4.0, math.pi / 4.0)
