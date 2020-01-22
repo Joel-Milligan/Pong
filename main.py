@@ -150,6 +150,8 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 reset_ball()
+                left_score = 0
+                right_score = 0
                 game_state = "menu"
 
     held_keys(pygame.key.get_pressed())
