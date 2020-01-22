@@ -16,6 +16,9 @@ game_ball = ball.Ball(main_display, screen_size[0] / 2, screen_size[1] / 2)
 player1 = paddle.Paddle(main_display, \
                         screen_size[0] - (indent + paddle.Paddle.width), \
                         (screen_size[1] / 2) - (paddle.Paddle.height - 2))
+player2 = paddle.Paddle(main_display, \
+                        (indent + paddle.Paddle.width), \
+                        (screen_size[1] / 2) - (paddle.Paddle.height - 2))
 
 # Functions
 def held_keys(keys):
@@ -24,6 +27,12 @@ def held_keys(keys):
 
     if keys[pygame.K_s]:
         player1.move_down()
+
+    if keys[pygame.K_UP]:
+        player2.move_up()
+
+    if keys[pygame.K_DOWN]:
+        player2.move_down()
 
 def check_ball_collision():
     # Check if hit a paddle
@@ -37,6 +46,7 @@ def check_ball_collision():
 def update_screen():
     main_display.fill(colours.black)
     player1.draw()
+    player2.draw()
     check_ball_collision()
     game_ball.update_position()
     game_ball.draw()
