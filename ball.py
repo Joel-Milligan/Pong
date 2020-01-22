@@ -11,8 +11,8 @@ class Ball:
         self.y = y
         self.rect = pygame.Rect(x - self.radius, y - self.radius, self.radius * 2, self.radius * 2)
         self.colour = colours.white
-        self.speed = 5
-        self.unit_vector = [1/math.sqrt(2), 1/math.sqrt(2)]
+        self.speed = 3
+        self.unit_vector = [1, 1]
         self.velocity = [i * self.speed for i in self.unit_vector]
 
     def draw(self):
