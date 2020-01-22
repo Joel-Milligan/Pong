@@ -5,6 +5,8 @@ import ball
 
 # Variables
 running = True
+game_state = "playing"
+winning_player = None
 screen_size = (800, 600)
 screen_title = "Pong"
 indent = 50
@@ -59,6 +61,7 @@ def check_ball_collision():
         game_win(player_right)
 
 def update_screen():
+    if(game_state == "playing"):
     main_display.fill(colours.black)
     player_right.draw()
     player_left.draw()
@@ -66,6 +69,9 @@ def update_screen():
     game_ball.update_position()
     game_ball.draw()
     pygame.display.flip()
+
+    if(game_state == "win"):
+        game_win(winning_player)
 
 # Main Game Loop
 while running:
