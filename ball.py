@@ -11,6 +11,7 @@ class Ball:
         self.y = y
         self.rect = pygame.Rect(x - self.radius, y - self.radius, self.radius * 2, self.radius * 2)
         self.colour = colours.white
+        self.speed = 5
         self.angle = random.uniform(-math.pi / 4.0, math.pi / 4.0)
         self.calculate_velocity()
 
