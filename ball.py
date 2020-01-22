@@ -11,22 +11,25 @@ class Ball:
         self.y = y
         self.rect = pygame.Rect(x - self.radius, y - self.radius, self.radius * 2, self.radius * 2)
         self.colour = colours.white
-        self.speed = 3
-        self.unit_vector = [1, 1]
-        self.velocity = [i * self.speed for i in self.unit_vector]
+        self.angle = random.uniform(-math.pi / 4.0, math.pi / 4.0)
+        self.calculate_velocity()
 
     def draw(self):
         pygame.draw.circle(self.screen, self.colour, (self.rect[0], self.rect[1]), int(self.radius))
 
     def calculate_velocity(self):
-        self.velocity = [i * self.speed for i in self.unit_vector]
+        self.velocity = [self.speed * math.cos(self.angle), self.speed * math.sin(self.angle)]
 
     def reflect_x(self):
-        self.unit_vector[0] = self.unit_vector[0] * -1
+        if(-math.pi / 2 < self.angle < math.pi / 2):
+            self.angle = math.pi - random.uniform(-math.pi / 4.0, math.pi / 4.0)
+        else:
+            self.angle = random.uniform(-math.pi / 4.0, math.pi / 4.0)
+
         self.calculate_velocity()
 
     def reflect_y(self):
-        self.unit_vector[1] = self.unit_vector[1] * -1
+        self.angle = -self.angle
         self.calculate_velocity()
 
     def update_position(self):
