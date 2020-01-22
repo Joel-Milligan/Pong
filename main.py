@@ -7,6 +7,9 @@ import ball
 running = True
 game_state = "menu"
 winning_player = None
+left_score = 0
+right_score = 0
+
 screen_size = (800, 600)
 screen_title = "Pong"
 indent = 50
@@ -37,7 +40,7 @@ quit_text_x = (screen_size[0] / 2) - (quit_text.get_width() / 2)
 quit_text_y = (2 * screen_size[1] / 3) - (quit_text.get_height() / 2)
 quit_button = pygame.Rect(quit_text_x, quit_text_y, quit_text.get_width(), quit_text.get_height())
 
-
+score_indent = 75
 
 # Functions
 def held_keys(keys):
@@ -63,15 +66,26 @@ def mouse_clicked(position):
             pygame.quit()
             quit()
 
-def game_win(winner):
-    pygame.time.delay(1000)
-    pygame.quit()
-    quit()
+def reset_ball():
+    global game_ball
+    game_ball = ball.Ball(main_display, screen_size[0] / 2, screen_size[1] / 2)
+
+def score(player):
+    global left_score
+    global right_score
+    global game_ball
+
+    if player == player_left:
+        left_score += 1
+        reset_ball()
+    if player == player_right:
+        right_score += 1
+        reset_ball()
 
 def check_ball_collision():
     global game_state
     global winning_player
-    
+
     # Check if hit a paddle
     # TODO Deal with when the ball hits top/bottom of paddle
     if(game_ball.rect.colliderect(player_right.rect) or game_ball.rect.colliderect(player_left.rect)):
@@ -83,12 +97,10 @@ def check_ball_collision():
 
     # Check if ball went out of screen
     if(game_ball.rect.left >= screen_size[0]):
-        game_state = "win"
-        winning_player = player_left
+        score(player_left)
     
     if(game_ball.rect.right <= 0):
-        game_state = "win"
-        winning_player = player_right
+        score(player_right)
 
 def update_screen():
     if(game_state == "menu"):
@@ -99,10 +111,26 @@ def update_screen():
         pygame.display.flip()
     
     if(game_state == "playing"):
+        global right_score
+        global left_score
+        
         main_display.fill(colours.black)
         player_right.draw()
         player_left.draw()
         check_ball_collision()
+        
+        left_score_text = font.render(str(left_score), True, colours.white, colours.black)
+        left_score_x = (screen_size[0] / 3) - (left_score_text.get_width() / 2)
+        left_score_y = score_indent
+        left_score_rect = pygame.Rect(left_score_x, left_score_y, left_score_text.get_width(), left_score_text.get_height())
+        main_display.blit(left_score_text, left_score_rect)
+
+        right_score_text = font.render(str(right_score), True, colours.white, colours.black)
+        right_score_x = (2 * screen_size[0] / 3) - (right_score_text.get_width() / 2)
+        right_score_y = score_indent
+        right_score_rect = pygame.Rect(right_score_x, right_score_y, right_score_text.get_width(), right_score_text.get_height())
+        main_display.blit(right_score_text, right_score_rect)
+
         game_ball.update_position()
         game_ball.draw()
         pygame.display.flip()
