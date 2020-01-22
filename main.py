@@ -37,6 +37,8 @@ def check_ball_collision():
 def update_screen():
     main_display.fill(colours.black)
     player1.draw()
+    check_ball_collision()
+    game_ball.update_position()
     game_ball.draw()
     pygame.display.flip()
 
