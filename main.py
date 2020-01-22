@@ -15,7 +15,7 @@ clock = pygame.time.Clock()
 game_ball = ball.Ball(main_display, screen_size[0] / 2, screen_size[1] / 2)
 player1 = paddle.Paddle(main_display, \
                         screen_size[0] - (indent + paddle.Paddle.width), \
-                        (screen_size[1] / 2) - (paddle.Paddle.length - 2))
+                        (screen_size[1] / 2) - (paddle.Paddle.height - 2))
 
 # Functions
 def held_keys(keys):
