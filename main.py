@@ -44,6 +44,9 @@ def game_win(winner):
     quit()
 
 def check_ball_collision():
+    global game_state
+    global winning_player
+    
     # Check if hit a paddle
     # TODO Deal with when the ball hits top/bottom of paddle
     if(game_ball.rect.colliderect(player_right.rect) or game_ball.rect.colliderect(player_left.rect)):
@@ -55,20 +58,22 @@ def check_ball_collision():
 
     # Check if ball went out of screen
     if(game_ball.rect.left >= screen_size[0]):
-        game_win(player_left)
+        game_state = "win"
+        winning_player = player_left
     
     if(game_ball.rect.right <= 0):
-        game_win(player_right)
+        game_state = "win"
+        winning_player = player_right
 
 def update_screen():
     if(game_state == "playing"):
-    main_display.fill(colours.black)
-    player_right.draw()
-    player_left.draw()
-    check_ball_collision()
-    game_ball.update_position()
-    game_ball.draw()
-    pygame.display.flip()
+        main_display.fill(colours.black)
+        player_right.draw()
+        player_left.draw()
+        check_ball_collision()
+        game_ball.update_position()
+        game_ball.draw()
+        pygame.display.flip()
 
     if(game_state == "win"):
         game_win(winning_player)
