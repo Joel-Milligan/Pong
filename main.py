@@ -5,7 +5,7 @@ import ball
 
 # Variables
 running = True
-game_state = "playing"
+game_state = "menu"
 winning_player = None
 screen_size = (800, 600)
 screen_title = "Pong"
@@ -72,6 +72,19 @@ def check_ball_collision():
         winning_player = player_right
 
 def update_screen():
+    if(game_state == "menu"):
+        main_display.fill(colours.black)
+        
+        start_text_x = (screen_size[0] / 2) - (start_game_text.get_width() / 2)
+        start_text_y = (screen_size[1] / 3) - (start_game_text.get_height() / 2)
+        main_display.blit(start_game_text, (start_text_x, start_text_y))
+        
+        quit_text_x = (screen_size[0] / 2) - (quit_text.get_width() / 2)
+        quit_text_y = (2 * screen_size[1] / 3) - (quit_text.get_height() / 2)
+        main_display.blit(quit_text, (quit_text_x, quit_text_y))
+
+        pygame.display.flip()
+    
     if(game_state == "playing"):
         main_display.fill(colours.black)
         player_right.draw()
