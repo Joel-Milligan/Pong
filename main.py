@@ -119,6 +119,11 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_clicked(pygame.mouse.get_pos())
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                reset_ball()
+                game_state = "menu"
+
     held_keys(pygame.key.get_pressed())
 
     update_screen()
