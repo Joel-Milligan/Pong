@@ -25,6 +25,15 @@ def held_keys(keys):
     if keys[pygame.K_s]:
         player1.move_down()
 
+def check_ball_collision():
+    # Check if hit a paddle
+    if(game_ball.rect.colliderect(player1.rect) or game_ball.rect.colliderect(player2.rect)):
+        game_ball.reflect_x()
+
+    # Bounce if hit top/bottom
+    if not((game_ball.rect.top) > 0 and (game_ball.rect.bottom) < screen_size[1]):
+        game_ball.reflect_y()
+
 def update_screen():
     main_display.fill(colours.black)
     player1.draw()
