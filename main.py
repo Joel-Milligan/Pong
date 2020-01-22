@@ -15,30 +15,30 @@ main_display = pygame.display.set_mode(screen_size)
 pygame.display.set_caption(screen_title)
 clock = pygame.time.Clock()
 game_ball = ball.Ball(main_display, screen_size[0] / 2, screen_size[1] / 2)
-player1 = paddle.Paddle(main_display, \
+player_right = paddle.Paddle(main_display, \
                         screen_size[0] - (indent + paddle.Paddle.width), \
                         (screen_size[1] / 2) - (paddle.Paddle.height - 2))
-player2 = paddle.Paddle(main_display, \
+player_left = paddle.Paddle(main_display, \
                         (indent + paddle.Paddle.width), \
                         (screen_size[1] / 2) - (paddle.Paddle.height - 2))
 
 # Functions
 def held_keys(keys):
     if keys[pygame.K_w]:
-        player1.move_up()
+        player_right.move_up()
 
     if keys[pygame.K_s]:
-        player1.move_down()
+        player_right.move_down()
 
     if keys[pygame.K_UP]:
-        player2.move_up()
+        player_left.move_up()
 
     if keys[pygame.K_DOWN]:
-        player2.move_down()
+        player_left.move_down()
 
 def check_ball_collision():
     # Check if hit a paddle
-    if(game_ball.rect.colliderect(player1.rect) or game_ball.rect.colliderect(player2.rect)):
+    if(game_ball.rect.colliderect(player_right.rect) or game_ball.rect.colliderect(player_left.rect)):
         game_ball.reflect_x()
 
     # Bounce if hit top/bottom
@@ -47,8 +47,8 @@ def check_ball_collision():
 
 def update_screen():
     main_display.fill(colours.black)
-    player1.draw()
-    player2.draw()
+    player_right.draw()
+    player_left.draw()
     check_ball_collision()
     game_ball.update_position()
     game_ball.draw()
